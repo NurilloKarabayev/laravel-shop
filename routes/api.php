@@ -31,26 +31,26 @@ use Illuminate\Support\Facades\Route;
 Route::post('roles/assign', [RoleController::class, "assign"]);
 Route::post('permissions/assign', [PermissionContoller::class, "assign"]);
 
+Route::apiResource('roles', RoleController::class);
+Route::apiResource('orders', OrderController::class);
+Route::apiResource('reviews', ReviewController::class);
+Route::apiResource('statuses', StatusController::class);
 Route::apiResource('products', ProductController::class);
 Route::apiResource('settings', SettingController::class);
-Route::apiResource('roles', RoleController::class);
-Route::apiResource('permissions',PermissionContoller::class);
-Route::apiResource('user-settings', UserSettingController::class)->middleware('auth:sanctum');
-Route::apiResource('reviews', ReviewController::class)->middleware('auth:sanctum');
-Route::apiResource('products.reviews',ProductReviewController::class)->middleware('auth:sanctum');
+Route::apiResource('favorites',FavouriteController::class);
 Route::apiResource('categories', CategoryController::class);
-Route::apiResource('statuses.orders',OrderStatusController::class);
+Route::apiResource('permissions',PermissionContoller::class);
 Route::apiResource('payment-types', PaymentTypeController::class);
-Route::apiResource('delivery-methods', DeliveryMethodController::class);
-Route::apiResource('categories.products', CategoryProductController::class);
+Route::apiResource('user-settings', UserSettingController::class);
+Route::apiResource('statuses.orders',OrderStatusController::class);
+Route::apiResource('user-cards', UserPaymentCardController::class);
+Route::apiResource('user-addresses', UserAddressController::class);
 Route::apiResource('products.photos', ProductPhotoController::class);
+Route::apiResource('products.reviews',ProductReviewController::class);
+Route::apiResource('delivery-methods', DeliveryMethodController::class);
+Route::apiResource('payment-card-types', PaymentCardTypeController::class);
+Route::apiResource('categories.products', CategoryProductController::class);
 
-Route::apiResource('statuses', StatusController::class)->middleware('auth:sanctum');
-Route::apiResource('orders', OrderController::class);
-Route::apiResource('favorites',FavouriteController::class)->middleware('auth:sanctum');
-Route::apiResource('user-addresses', UserAddressController::class)->middleware('auth:sanctum');
-Route::apiResource('payment-card-types', PaymentCardTypeController::class)->middleware('auth:sanctum');
-Route::apiResource('user-cards', UserPaymentCardController::class)->middleware('auth:sanctum');
 
 
 

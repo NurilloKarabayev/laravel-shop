@@ -9,6 +9,10 @@ use Illuminate\Http\JsonResponse;
 
 class ReviewController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
+    }
 
     public function index(): JsonResponse
     {

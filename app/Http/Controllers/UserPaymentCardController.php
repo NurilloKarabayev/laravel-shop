@@ -12,26 +12,21 @@ use Illuminate\Contracts\Encryption\DecryptException;
 
 class UserPaymentCardController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
+    }
     public function index()
     {
 
-//        dd(auth()->user()->paymentCards);
         return $this->response(UserPaymnetCardResource::collection(auth()->user()->paymentCards)) ;
 
 
-
-
-
-//                $name = Crypt::encryptString("Nurullo");
-////                dd($name);
-//                $namenew =Crypt::decryptString($name);
-//                dd($namenew);
     }
 
 
     public function store(StoreUserPaymentCardRequest $request)
     {
-//            dd($request);
         $card = auth()->user()->paymentCards()->create([
             'payment_card_type_id' => $request->payment_card_type_id,
             'name' => Crypt::encryptString($request->name),

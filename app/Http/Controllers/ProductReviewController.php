@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class ProductReviewController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
+    }
 
     public function index(Product $product)
     {
