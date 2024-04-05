@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\Role;
+use Spatie\Permission\Models\Role;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
@@ -13,7 +13,8 @@ class RolePolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->can("role:viewAny");
+
     }
 
     /**

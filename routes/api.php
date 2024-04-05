@@ -17,21 +17,24 @@ use App\Http\Controllers\ProductReviewController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserSettingController;
 use App\Http\Controllers\PaymentCardTypeController;
-use App\Models\Role;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\PermissionContoller;
 use App\Http\Controllers\ProductPhotoController;
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
 
 
 
-//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
 
 
+
+Route::post('roles/assign', [RoleController::class, "assign"]);
+Route::post('permissions/assign', [PermissionContoller::class, "assign"]);
 
 Route::apiResource('products', ProductController::class);
 Route::apiResource('settings', SettingController::class);
+Route::apiResource('roles', RoleController::class);
+Route::apiResource('permissions',PermissionContoller::class);
 Route::apiResource('user-settings', UserSettingController::class)->middleware('auth:sanctum');
 Route::apiResource('reviews', ReviewController::class)->middleware('auth:sanctum');
 Route::apiResource('products.reviews',ProductReviewController::class)->middleware('auth:sanctum');

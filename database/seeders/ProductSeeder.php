@@ -26,18 +26,18 @@ class ProductSeeder extends Seeder
                         ],
                         [
                             'attribute_id' => 2,
-                            'value_id' => rand(4,5),
+                            'value_id' => 4,
                         ],
                         [
-                            'attribute_id' => 2,
+                            'attribute_id' => 3,
                             'value_id' => rand(6,7),
                         ],
-
-                    ]
-                )
+                    ],
+                ),
+                "added_price" => 500000,
             ]);
             $product->stocks()->create([
-                'quantity' => rand(1,5),
+                'quantity' => rand(15,30),
                 'attributes' => json_encode(
                     [
                         [
@@ -49,7 +49,7 @@ class ProductSeeder extends Seeder
                             'value_id' => rand(4,5),
                         ],
                         [
-                            'attribute_id' => 2,
+                            'attribute_id' => 3,
                             'value_id' => rand(6,7),
                         ],
 
@@ -57,7 +57,7 @@ class ProductSeeder extends Seeder
                 )
             ]);
             $product->stocks()->create([
-                'quantity' => rand(1,5),
+                'quantity' => rand(15,30),
                 'attributes' => json_encode(
                     [
                         [
@@ -76,7 +76,7 @@ class ProductSeeder extends Seeder
                     ]
                 )
             ]);$product->stocks()->create([
-                'quantity' => rand(1,5),
+                'quantity' => rand(10,15),
                 'attributes' => json_encode(
                     [
                         [
@@ -88,7 +88,7 @@ class ProductSeeder extends Seeder
                             'value_id' => rand(4,5),
                         ],
                         [
-                            'attribute_id' => 2,
+                            'attribute_id' => 3,
                             'value_id' => rand(6,7),
                         ],
 

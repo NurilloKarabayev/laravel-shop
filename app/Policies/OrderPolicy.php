@@ -49,7 +49,7 @@ class OrderPolicy
     }
 
 
-//    public function restore(User $user, Order $order): bool
+//    public function restore(User $user, mail $order): bool
 //    {
 //        //
 //    }
@@ -57,7 +57,7 @@ class OrderPolicy
 //    /**
 //     * Determine whether the user can permanently delete the model.
 //     */
-//    public function forceDelete(User $user, Order $order): bool
+//    public function forceDelete(User $user, mail $order): bool
 //    {
 //        //
 //    }

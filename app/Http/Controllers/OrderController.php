@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\OrderResource;
 use App\Http\Resources\ProductResource;
+use App\Models\DeliveryMethod;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
@@ -23,7 +24,7 @@ class OrderController extends Controller
 
 
 
-//    public function index(Order $order)
+//    public function index(mail $order)
 //    {
 //        return $this->response(OrderResource::collection(auth()->user()->orders));
 //    }
@@ -34,8 +35,10 @@ class OrderController extends Controller
         $products = [];
         $address = UserAddress::find($request->address_id);
         $notFoundProducts = [];
+        $delivery = DeliveryMethod::findOrFail($request->delivery_method_id);
 
-//        dd($request->products);
+
+//
 
 
         foreach ($request['products'] as $requestProduct){
@@ -52,7 +55,9 @@ class OrderController extends Controller
 
                 $productWithStock = $product->withStock($requestProduct['stock_id']);
                 $productResource = new ProductResource($productWithStock);
+
                 $sum += ($productResource['price']*$productResource['quantity']);
+                $sum+= $productWithStock->stocks[0]->added_price;
                 $products[] = $productResource->resolve();
             }else{
                 $notFoundProducts = $requestProduct ;
@@ -62,6 +67,7 @@ class OrderController extends Controller
         }
 
        if ($notFoundProducts === [] && $products !== [] && $sum !== 0){
+           $sum+= $delivery->sum;
            $order = auth()->user()->orders()->create([
                'comment' => $request->comment,
                'delivery_method_id' => $request->delivery_method_id,
@@ -79,7 +85,7 @@ class OrderController extends Controller
                    $stock->quantity -= $product['order_quantity'];
                    $stock->save();
                }
-               return $this->success("qowildi");
+               return $this->success("qowildi", $order);
            }
 
 
